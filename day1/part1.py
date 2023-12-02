@@ -1,4 +1,5 @@
-# Day 1, Jacobus Burger (2023)
+# Jacobus Burger (2023)
+# Day 1 Part 1
 
 
 def solution(filename, test=False):
