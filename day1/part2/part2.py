@@ -2,16 +2,17 @@
 # Day 1 Part 2
 
 
+# TODO: simple find and replace won't work. Use a sliding window to match for the first word greedily (iterate over from longest word to the shortest starting with left pointer at 0 and going until left pointer is > length / 2. Then do the same in reverse from the right) and then replace THAT!
 map = {
-    "three": "3",
-    "seven": "7",
-    "eight": "8",
-    "four": "4",
-    "five": "5",
-    "nine": "9",
     "one": "1",
     "two": "2",
     "six": "6",
+    "four": "4",
+    "five": "5",
+    "nine": "9",
+    "three": "3",
+    "seven": "7",
+    "eight": "8",
 }
 def solution(filename, test=False):
     total = 0
@@ -23,7 +24,6 @@ def solution(filename, test=False):
             if test:
                 print(string)
             if string.find(key) != -1:
-                print("replacing")
                 string = string.replace(key, value, 1)
                 break
         # replace last occurence of word with number (sdrawkcab)
@@ -60,5 +60,5 @@ def solution(filename, test=False):
 
 
 if __name__ == '__main__':
-    print("test run: ", solution("test2.txt", True))
-    print("true run: ", solution("part2.txt"))
+    print("test run: ", solution("../input/test2.txt", True))
+    print("true run: ", solution("../input/part2.txt"))

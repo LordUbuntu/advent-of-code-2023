@@ -31,5 +31,5 @@ def solution(filename, test=False):
 
 
 if __name__ == '__main__':
-    print("test run: ", solution("test1.txt", True))
-    print("true run: ", solution("part1.txt"))
+    print("test run: ", solution("../input/test1.txt", True))
+    print("true run: ", solution("../input/part1.txt"))
