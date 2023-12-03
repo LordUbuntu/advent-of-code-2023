@@ -16,12 +16,26 @@ map = {
 def solution(filename, test=False):
     total = 0
     for string in open(filename, "r").readlines():
-        # translate words to digits first
+        # replace first occurence of word with number
+        if test:
+            print("k->v subst:")
         for key, value in map.items():
-            string = string.replace(key, value)
+            if test:
+                print(string)
+            if string.find(key) != -1:
+                print("replacing")
+                string = string.replace(key, value, 1)
+                break
+        # replace last occurence of word with number (sdrawkcab)
+        for key, value in map.items():
+            if test:
+                print(string)
+            if string[::-1].find(key[::-1]) != -1:
+                string = string[::-1].replace(key[::-1], value[::-1], 1)
+                string = string[::-1]
+                break
         # then continue with normal part1 solution
         if test:
-            print("\n")
             print(string)
             print("index | character")
         number = ""
