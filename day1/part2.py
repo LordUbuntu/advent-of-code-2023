@@ -3,15 +3,15 @@
 
 
 map = {
-    "one": "1",
-    "two": "2",
     "three": "3",
-    "four": "4",
-    "five": "5",
-    "six": "6",
     "seven": "7",
     "eight": "8",
+    "four": "4",
+    "five": "5",
     "nine": "9",
+    "one": "1",
+    "two": "2",
+    "six": "6",
 }
 def solution(filename, test=False):
     total = 0
