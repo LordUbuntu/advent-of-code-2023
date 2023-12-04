@@ -26,4 +26,7 @@ So to do this we:
 * do the same for the last instance (all strings reversed to keep replacement simple)
 * finally, continue on to doing exactly what was done in Part 1.
 
-The implementation(s) can be found in [Day 1 Part 1]().
+More specifically, we need to do a sliding window to match greedily the first and last shortest string qnd replace them with their digits.
+A potential better future approach is to do a single slide left to right matching for words or digits and keeping mind the firet and last ones.
+
+The implementation(s) can be found in [Day 1 Part 2]().
