@@ -9,24 +9,31 @@ My solutions to this year's Advent of Code
 The goal is to read the first and last digit of each string, add them together, and return the total.
 
 To do this, we:
-* read each string in
-* start an index pointer `l` at the start of the string and an index pointer `r` at the end of it.
-* We move `l` forwards, `r` backwards, and stop each when they find a digit in the string (potentially overlapping on the same digit)
-* Thus we get the first and last digit, which we stick together to make a single two-digit number, adding each to a list
-* Finally, we do an add reduce on the list of numbers to get the sum, and print that
-
-The implementation(s) can be found in [Day 1 Part 1]().
+* read each `string` in from the specified `filename`
+* starting on `index` 0, we iterate over the length of `string`
+  * each iteration, we get the character at the current `index`
+  * if the character is a digit we record that as the 10s digit
+  * otherwise we record the current digit as the 1s digit
+* Thus we get the first and last digit, which we join together to make a single `number`
+* Finally, we convert that string representation to an integer and add it to the `total`
+* return `total`
 
 ### Part 2
 
-The difference this time is that there are number-words instead of just digits which need to be treated like digits. Otherwise this is just problem 1 again.
+This time we operate by the same principle but with a sliding window to match against substrings (number words) in addition to matching single digits. 
 
-So to do this we:
-* find and replace the first instance of a number word (ordered from longest words to smallest words for greedy match)
-* do the same for the last instance (all strings reversed to keep replacement simple)
-* finally, continue on to doing exactly what was done in Part 1.
+To do this we:
+* utilize `index` to point to the start of the window
+  * check if the character in `string` at `index` is a digit
+    * if it is
+      * record the digit like in part one and continue
+    * otherwise
+      * iterate over the dictionary of number words greedily (from shortest)
+        * if all characters match, record the equivalent digit as in part 1
+* finally, join the number, add its value to `total`, and return `total`
 
-More specifically, we need to do a sliding window to match greedily the first and last shortest string qnd replace them with their digits.
-A potential better future approach is to do a single slide left to right matching for words or digits and keeping mind the firet and last ones.
+### Comments
 
-The implementation(s) can be found in [Day 1 Part 2]().
+Interestingly both of these solutions are single-pass.
+
+The implementation(s) can be found in [Day 1]().
