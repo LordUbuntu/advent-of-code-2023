@@ -7,25 +7,18 @@ def part1(filename, test=False):
     total = 0
     for string in open(filename, "r").readlines():
         if test:
-            print("\n")
-            print(string)
-            print("index | character")
-        number = ""
-        for l in range(0, len(string)):
+            print(f"str: {string}")
+        number = ["", ""]
+        for index in range(0, len(string)):
+            # add first digit to number, then just add most recent digit to second place on number. Thus only needing one pass
+            if string[index].isdigit():
+                if number[0] == "":
+                    number[0] = string[index]
+                else:
+                    number[1] = string[index]
             if test:
-                print(l, string[l])
-            if string[l].isdigit():
-                number += string[l]
-                break
-        for r in range(len(string) - 1, -1, -1):
-            if test:
-                print(r, string[r])
-            if string[r].isdigit():
-                number += string[r]
-                break
-        if test:
-            print("num:", number)
-        total += int(number)
+                print(f"i: {index}, ch: {string[index]}, num: {number}")
+        total += int("".join(number))
         if test:
             print("total:", total)
     return total
