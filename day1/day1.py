@@ -43,7 +43,7 @@ def part2(filename, test=False):
     total = 0
     for string in open(filename, "r").readlines():
         if test:
-            print(f"str: {string}")
+            print(f"str: {string}\n\n")
         # scroll index across string
         number = ["", ""]
         for index in range(0, len(string)):
@@ -66,10 +66,14 @@ def part2(filename, test=False):
                         print(f"word: {word}")
                     is_number = True
                     for i in range(0, len(word)):
+                        if i + index >= len(string):
+                            is_number = False
+                            break
                         if test:
                             print(f"i: {i}, index: {index}\n str: {string[i + index]}, word: {word[i]}")
                         if string[i + index] != word[i]:
                             is_number = False
+                            break
                     # if all characters match
                     if is_number:
                         # add digit
@@ -92,8 +96,8 @@ def part2(filename, test=False):
 
 if __name__ == '__main__':
     # Part 1
-    print("test run: ", part1("input/test1.txt", True))
+    print("test run: ", part1("input/test1.txt"))
     print("true run: ", part1("input/part1.txt"))
     # Part 2
-    print("test run: ", part2("input/test2.txt", True))
+    print("test run: ", part2("input/test2.txt"))
     print("true run: ", part2("input/part2.txt"))
