@@ -18,6 +18,8 @@ def part1(filename, test=False):
                     number[1] = string[index]
             if test:
                 print(f"i: {index}, ch: {string[index]}, num: {number}")
+        if number[1] == "":
+            number[1] = number[0]
         total += int("".join(number))
         if test:
             print("total:", total)
