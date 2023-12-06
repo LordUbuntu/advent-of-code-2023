@@ -56,3 +56,18 @@ To do this we:
   * otherwise
     * add game `id` to `total`
 * return `total`
+
+### Part 2
+
+This one is even easier! To find the minimum possible number of red, green, and blue
+cubes in the bag, we just need to find the maximum occurrences of each. Then to
+calculate the power we just do a multiply-reduce to get the product of the three, then
+add that to the total!
+
+To do this we:
+* read each line and parse into
+  `counts` and `id` as before
+  * if any `count` for any `color` exceeds its previous maximum, update its maximum
+  * calculate the power of the set of cubes using a reduce with the multiply function
+  * add that to the `total`
+* return `total`

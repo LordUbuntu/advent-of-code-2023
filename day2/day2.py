@@ -53,7 +53,7 @@ def part2(filename):
 
         # add power to total
         total += reduce(mul, rgb_max.values())
-        print(game, counts, id, rgb_max, total)
+        # print(game, counts, id, rgb_max, total)
     return total
 
 
@@ -61,3 +61,4 @@ if __name__ == "__main__":
     print(part1("input/test1.txt"))
     print(part1("input/part1.txt"))
     print(part2("input/test2.txt"))
+    print(part2("input/part2.txt"))
