@@ -44,13 +44,15 @@ The implementation(s) can be found in [Day 1]().
 
 ### Part 1
 
-This one is trivial. We only need to check if the total number of red, green, and blue cubes stays under a certain threshold (12 red, 13 green, 14 blue). If they do we just add the game id to the running total and finally return that.
+This one is trivial. We only need to check if the limits of red, green, or blue cubes
+was violated at any one time (if there were any occurrences of them exceeding 12, 13,
+and 14 respectively). Then we just tally the total of the id's of all games which did
+not.
 
 To do this we:
-* read each line, parsing red, green, and blue counts
-  * record totals in `rgb` list
-  * if any total exceeds its maximum
+* read each line, parsing red, green, and blue `counts` along with the `id` number
+  * if any `count` for any `color` exceeds its maximum
     * continue to next game
   * otherwise
-    * add game id to `total`
+    * add game `id` to `total`
 * return `total`
