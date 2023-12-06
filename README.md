@@ -37,3 +37,20 @@ To do this we:
 Interestingly both of these solutions are single-pass.
 
 The implementation(s) can be found in [Day 1]().
+
+
+
+## Day 2
+
+### Part 1
+
+This one is trivial. We only need to check if the total number of red, green, and blue cubes stays under a certain threshold (12 red, 13 green, 14 blue). If they do we just add the game id to the running total and finally return that.
+
+To do this we:
+* read each line, parsing red, green, and blue counts
+  * record totals in `rgb` list
+  * if any total exceeds its maximum
+    * continue to next game
+  * otherwise
+    * add game id to `total`
+* return `total`
