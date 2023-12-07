@@ -71,3 +71,5 @@ To do this we:
   * calculate the power of the set of cubes using a reduce with the multiply function
   * add that to the `total`
 * return `total`
+
+## Part 3
