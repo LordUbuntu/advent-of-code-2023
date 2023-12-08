@@ -72,4 +72,16 @@ To do this we:
   * add that to the `total`
 * return `total`
 
-## Part 3
+
+
+## Day 3
+
+### Part 1
+
+This problem reminds me of the toboggan slope one! To do that we can essentially use the same logic of modulo and multiplication to represent the 2D grid as a 1D array.
+One potential way to accomplish this is with a BFS of depth 1 around any digit characters. This solution might be more elegant, requiring less repeat checks than the next idea down. But its time complexity of O(V + E) may not be optimal.
+Another may be to do a simple sweep, whenever we encounter a digit we add it to a queue. We use some clever 1D "matrix" maths to check the tiles directly above, below, left, and right of the current digit for any non-digit non-'.' characters. If we reach the end of a number (string of digits) without encountering any we empty the queue. If we do, then we join the digits together in the correct order (thus the queue), add that to the total, and continue with our now empty queue to the next one. This may be simpler that a BFS and be done in O(n).
+
+The principle is basic: find all "islands" of digits, then check adjacent "tiles" for any "non-'.'" characters. Add those together. Return.
+
+I'll take a nap and think about it...
