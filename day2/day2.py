@@ -29,7 +29,6 @@ def part1(filename):
         # tally possible games
         if possible:
             total += id
-        # print(id, total)
     return total
 
 
@@ -53,7 +52,6 @@ def part2(filename):
 
         # add power to total
         total += reduce(mul, rgb_max.values())
-        # print(game, counts, id, rgb_max, total)
     return total
 
 
