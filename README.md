@@ -85,3 +85,18 @@ Another may be to do a simple sweep, whenever we encounter a digit we add it to 
 The principle is basic: find all "islands" of digits, then check adjacent "tiles" for any "non-'.'" characters. Add those together. Return.
 
 I'll take a nap and think about it...
+
+Plan:
+* sweep once across the "grid" as a string from top left to bottom right
+  * if the current char is '.'
+    * if the number was flagged as a part number (adjacent symbols)
+      * convert queue of digits to int and add it to total
+    * part number flag is false
+    * empty digit queue
+    * continue
+  * if the current char is a digit
+    * add digit to queue
+  * if the current char is not a digit or '.'
+    * part number flag is true
+  * check adjacent tiles for current char for non-digit non-'.' char
+    * if so, part number flag is true
