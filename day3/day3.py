@@ -33,7 +33,7 @@ def part1(filename):
                     # bound pointers inside grid
                     x = max(0, min(9, i + a))
                     y = max(0, min(9, j + b))
-                    print(f"(x{x}, y{y})")  # getting the wrong values
+                    print(f"(x{x}, y{y})")  # doesn't work right, check math
                     # check adjacent bounded tiles for any part symbols
                     symbol = schematic[y][x]
                     if not symbol.isdigit() and symbol != '.':
