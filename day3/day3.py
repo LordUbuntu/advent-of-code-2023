@@ -27,3 +27,16 @@ def part1(filename):
                 print("  add digit to queue")
                 queue.append(schematic[i][j])
             # look at all adjacent tiles (3x3 kernel) for part symbols
+            for a in range(-1, 2):
+                for b in range(-1, 2):
+                    print("=== ab loop")
+                    # bound pointers inside grid
+                    x = max(0, min(9, i + a))
+                    y = max(0, min(9, j + b))
+                    print(f"(x{x}, y{y})")  # getting the wrong values
+                    # check adjacent bounded tiles for any part symbols
+                    symbol = schematic[y][x]
+                    if not symbol.isdigit() and symbol != '.':
+                        part = True
+                    print(f"symbol: {symbol}, part {part}")
+    return total
