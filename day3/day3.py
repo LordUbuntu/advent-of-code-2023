@@ -26,7 +26,7 @@ def part1(filename):
             elif schematic[i][j].isdigit():
                 print("  add digit to queue")
                 queue.append(schematic[i][j])
-            # look at all adjacent tiles (3x3 kernel) for part symbols
+            # look for part symbol among adjacent tiles (3x3 kernel)
             for a in range(-1, 2):
                 for b in range(-1, 2):
                     print("=== ab loop")
