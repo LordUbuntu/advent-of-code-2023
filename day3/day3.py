@@ -33,8 +33,8 @@ def part1(filename):
             for a in range(-1, 2):
                 for b in range(-1, 2):
                     # bound pointers inside grid
-                    x = max(0, min(9, i + a))
-                    y = max(0, min(9, j + b))
+                    y = max(0, min(9, i + a))
+                    x = max(0, min(9, j + b))
                     # print(f"(x{x}, y{y})")  # doesn't work right, check math
                     # check adjacent bounded tiles for any part symbols
                     symbol = schematic[y][x]
