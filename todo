@@ -1,3 +1,7 @@
+* sketch out and complete day 3
+
+
+
 * I can generalize each part into a single function that reads and parses input data,
   then follow that with the part-specific solution (details of parsing data)
 * I can write an automation to create the directory, get input data, etc
