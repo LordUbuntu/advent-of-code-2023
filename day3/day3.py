@@ -14,7 +14,7 @@ def part1(filename):
             if not char.isdigit():
                 # add number to total if it's a part number
                 if part_number:
-                    pass
+                    total += int(''.join(number))
                 # reset digits for next number
                 number = []
                 part_number = False
