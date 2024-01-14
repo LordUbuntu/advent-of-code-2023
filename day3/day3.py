@@ -11,6 +11,15 @@ def part1(filename):
     for row in range(len(schematic)):
         for col in range(len(schematic[0])):
             char = schematic[row][col]
+            # check for adjacent part symbols
+            for i in range(-1, 2):
+                for j in range(-1, 2):
+                    y, x = row + i, col + j
+                    if y < 0 or y >= len(schematic):
+                        continue
+                    if x < 0 or x >= len(schematic[0]):
+                        continue
+                    print(schematic[y][x])
             # remember digits of number in order
             if char.isdigit():
                 number.append(char)
