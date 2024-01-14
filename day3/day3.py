@@ -6,14 +6,19 @@ def part1(filename):
     total = 0
     schematic = [line.strip() for line in open(filename).readlines()]
     number = []  # contruct numbers from a queue of digits
+    part_number = False
     # scan pointer across grid
     for row in range(len(schematic)):
         for col in range(len(schematic[0])):
             char = schematic[row][col]
+            # remember digits of number in order
             if char.isdigit():
                 number.append(char)
                 print("digit: {}, number: {}".format(char, number))
             else:
-                print(''.join(number))
+                # add number to total if it's a part number
+                if part_number:
+                    print("{} is a part number.format(''.join(number)))
+                # reset digits for next number
                 number = []
     return total
