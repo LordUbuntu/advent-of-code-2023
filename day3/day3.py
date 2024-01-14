@@ -2,7 +2,6 @@
 # Advent of Code Day 3
 
 def part1(filename):
-    def bound(n, low, high): return max(low, min(high, n))
     total = 0
     schematic = [line.strip() for line in open(filename).readlines()]
     number = []  # contruct numbers from a queue of digits
@@ -27,7 +26,7 @@ def part1(filename):
             else:
                 # add number to total if it's a part number
                 if part_number:
-                    print("{} is a part number.format(''.join(number)))
+                    print("{} is a part number".format(''.join(number)))
                 # reset digits for next number
                 number = []
     return total
