@@ -47,8 +47,17 @@ def part2(filename):
         for col in range(len(schematic[0])):
             char = schematic[row][col]
             # if a gear symbol
+            if char == '*':
                 # check for adjacent numbers
-                # find the start of both numbers and get their values
-                # get their product
-                # add to total
+                for i in range(-1, 2):
+                    for j in range(-1, 2):
+                        y, x = row + i, col + j
+                        if y < 0 or y >= len(schematic):
+                            continue
+                        if x < 0 or x >= len(schematic[0]):
+                            continue
+                        if schematic[y][x].isdigit():
+                            # find the start of both numbers and get their values
+                            # get their product
+                            # add to total
     return total
