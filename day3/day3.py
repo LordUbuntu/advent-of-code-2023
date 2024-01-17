@@ -42,4 +42,13 @@ def part2(filename):
     number = []  # contruct numbers from a queue of digits
     # same as part1 but this time only paying attention to *
     # when a * is encountered adjacent to a number, find the start of the other number also adjacent to it, get the numeric string of both, and add their values together
+    # scan pointer across grid
+    for row in range(len(schematic)):
+        for col in range(len(schematic[0])):
+            char = schematic[row][col]
+            # if a gear symbol
+                # check for adjacent numbers
+                # find the start of both numbers and get their values
+                # get their product
+                # add to total
     return total
