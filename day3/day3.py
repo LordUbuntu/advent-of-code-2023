@@ -60,6 +60,11 @@ def part2(filename):
                         if schematic[y][x].isdigit():
                             print("{} at {},{}".format(schematic[y][x], y, x))
                             # find the start of both numbers and get their values
+                                # get the y,x of the adjacent digit
+                                # move x back to start of number by looking one behind the new subindex
+                                # once the start is found, collect digits in queue in order from left to right
+                                # then join those digits into a string
+                                # then turn into an int
                             # get their product
                             # add to total
     return total
