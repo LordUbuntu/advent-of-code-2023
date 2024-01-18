@@ -60,8 +60,19 @@ def part2(filename):
                         if schematic[y][x].isdigit():
                             print("{} at {},{}".format(schematic[y][x], y, x))
                             # find the start of both numbers and get their values
-                                # get the y,x of the adjacent digit
-                                # move x back to start of number by looking one behind the new subindex
+                            # first number
+                            num_y, num_x = y, x
+                            while num_x > 0 and schematic[num_y][num_x].isdigit():
+                                if schematic[num_y][num_x - 1].isdigit():
+                                    num_x -= 1
+                                else:
+                                    break
+                            print("start of num is {},{}".format(num_y, num_x))
+                            queue = []
+                            while schematic[num_y][num_x].isdigit():
+                                queue.append(schematic[num_y][num_x])
+                                num_x += 1
+                            print("number is {}".format(''.join(queue)))
                                 # once the start is found, collect digits in queue in order from left to right
                                 # then join those digits into a string
                                 # then turn into an int
