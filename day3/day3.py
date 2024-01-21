@@ -41,41 +41,11 @@ def part2(filename):
     schematic = [line.strip() for line in open(filename).readlines()]
     number = []  # contruct numbers from a queue of digits
     # same as part1 but this time only paying attention to *
-    # when a * is encountered adjacent to a number, find the start of the other number also adjacent to it, get the numeric string of both, and add their values together
-    # scan pointer across grid
+    # when a * is encountered adjacent to a number, look for another adjacent number that isn't part of the same number, then find the start of both numbers, get their numeric value, and add their values together
     for row in range(len(schematic)):
         for col in range(len(schematic[0])):
             char = schematic[row][col]
-            # if a gear symbol
             if char == '*':
                 print("* at {},{}".format(col, row))
                 # check for adjacent numbers
-                for i in range(-1, 2):
-                    for j in range(-1, 2):
-                        y, x = row + i, col + j
-                        if y < 0 or y >= len(schematic):
-                            continue
-                        if x < 0 or x >= len(schematic[0]):
-                            continue
-                        if schematic[y][x].isdigit():
-                            print("{} at {},{}".format(schematic[y][x], y, x))
-                            # find the start of both numbers and get their values
-                            # first number
-                            num_y, num_x = y, x
-                            while num_x > 0 and schematic[num_y][num_x].isdigit():
-                                if schematic[num_y][num_x - 1].isdigit():
-                                    num_x -= 1
-                                else:
-                                    break
-                            print("start of num is {},{}".format(num_y, num_x))
-                            queue = []
-                            while schematic[num_y][num_x].isdigit():
-                                queue.append(schematic[num_y][num_x])
-                                num_x += 1
-                            print("number is {}".format(''.join(queue)))
-                                # once the start is found, collect digits in queue in order from left to right
-                                # then join those digits into a string
-                                # then turn into an int
-                            # get their product
-                            # add to total
     return total
