@@ -49,33 +49,7 @@ def part2(filename):
                 print("* at {},{}".format(col, row))
                 # adjacency check
                 ratio = 0
-                # WARN: this is messy, must refactor later
-                for i in range(-1, 2):
-                    for j in range(-1, 2):
-                        x, y = row + i, col + j
-                        symbol = schematic[y][x]
-                        if symbol.isdigit():
-                            num_x = x
-                            print("num_x {}".format(num_x))
-                            # move pointer to leftmost side of number
-                            while num_x > 0 and schematic[y][num_x] != '.':
-                                num_x -= 1
-                            # move to start of number
-                            num_x += 1
-                            print("num_x {}".format(num_x))
-                            # get number
-                            # something goes wrong here
-                            while num_x < len(schematic[0]) and schematic[y][num_x] != '.':
-                                number.append(schematic[y][num_x])
-                            # calculate number value
-                            print(number)
-                            if ratio == 0:
-                                ratio += int(''.join(number))
-                            else:
-                                ratio *= int(''.join(number))
-                            number = []
-                            print(ratio)
-                            print()
+                # TODO: DFS, returning y and least x of each number
     return total
 
 
