@@ -64,6 +64,7 @@ def part2(filename):
                             num_x += 1
                             print("num_x {}".format(num_x))
                             # get number
+                            # something goes wrong here
                             while num_x < len(schematic[0]) and schematic[y][num_x] != '.':
                                 number.append(schematic[y][num_x])
                             # calculate number value
@@ -73,6 +74,7 @@ def part2(filename):
                             else:
                                 ratio *= int(''.join(number))
                             number = []
+                            print(ratio)
                             print()
     return total
 
