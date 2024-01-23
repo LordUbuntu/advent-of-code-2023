@@ -1,7 +1,8 @@
 # Jacobus Burger (2023)
 # Advent of Code Day 3
-from itertools import product
-from string import digits, punctuation
+from itertools import product, groupby
+from functools import partial
+import string
 
 
 def part1(filename):
@@ -52,14 +53,26 @@ def part2(filename):
                 ratio = 0
                 # DFS all adjacent digits
                 # REMEMBER: (y,x) not (x,y)
-                coords = dfs(schematic, (row, col), {*digits})
-                # TODO:
+                coords = dfs(schematic, (row, col), {*string.digits})
                 # group coordinates of digits based on the same y value
+                numbers = [
+                    list(group)
+                    for _, group in groupby(coords, lambda coord: coord[0])
+                ]
                 # sort coordinates of each number's digits by ascending x
+                for number in numbers:
+                    number.sort(key=lambda coord: coord[1])
                 # reconstruct and get value of num from ordered coords
+                for number in numbers:
+                    digits = map(partial(coord_to_char, schematic), number)
+                    print(list(digits))
                 # by default unoccupied number places are equal to 0 so that if there is only 1 adjacent number the product will equal 0
                 # get their product and add to total
     return total
+
+
+def coord_to_char(G, coord):
+    return G[coord[0]][coord[1]]
 
 
 # where G is the schematic, and v is the starting coordinate symbol
@@ -75,7 +88,7 @@ def dfs(G: list, vi: tuple, symbols: set) -> set:
     while stack:
         v = stack.pop()
         visited.append(v)
-        # search adjacent digits
+        # search valid adjacent tiles
         for i, j in product(range(v[0] - 1, v[0] + 2), range(v[1] - 1, v[1] + 2)):
             if (i,j) in passed:
                 continue
@@ -90,7 +103,6 @@ def dfs(G: list, vi: tuple, symbols: set) -> set:
                     stack.append((i, j))
             else:
                 passed.append((i,j))
-            print(G[i][j], symbols, G[i][j] in symbols)
     visited.remove(vi)
     return set(visited)
 
