@@ -53,6 +53,21 @@ def part2(filename):
     return total
 
 
+# where G is the schematic, and v is the starting coordinate symbol
+def dfs(G, v):
+    from itertools import product
+    # start DFS for all digits around the given position
+    visited, stack = [], [v]  # (y,x) for v
+    while stack:
+        for i, j in product(range(v[0] - 1, v[0] + 2), range(v[1] - 1, v[1] + 2)):
+            if i < 0 or i > len(G):
+                continue
+            if j < 0 or j > len(G[0]):
+                continue
+        break
+
+
+
 
 
 
