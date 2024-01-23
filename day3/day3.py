@@ -1,5 +1,7 @@
 # Jacobus Burger (2023)
 # Advent of Code Day 3
+from itertools import product
+from string import digits, punctuation
 
 
 def part1(filename):
@@ -50,6 +52,7 @@ def part2(filename):
                 # adjacency check
                 ratio = 0
                 # DFS all adjacent digits
+                coords = dfs(schematic, (row, col), {*digits})
                 # check there are two numbers, otherwise skip the rest
                 # group coordinates of digits based on the same y value
                 # sort coordinates of each number's digits by ascending x
@@ -59,9 +62,14 @@ def part2(filename):
 
 
 # where G is the schematic, and v is the starting coordinate symbol
-def dfs(G, vi):
-    from itertools import product
-    # start DFS for all digits around the given position
+def dfs(G: list, vi: tuple, symbols: set) -> set:
+    """
+    dfs(G, vi, symbols)
+
+    Perform a depth first search on the 2D grid 'G' starting at
+        the (y,x) coordinate of the initial vertex 'vi' which
+        returns all coordinates which are in the set 'symbols'.
+    """
     visited, stack = [], [vi]  # (y,x) for v
     while stack:
         v = stack.pop()
@@ -72,7 +80,7 @@ def dfs(G, vi):
                 continue
             if j < 0 or j >= len(G[0]):
                 continue
-            if G[i][j].isdigit():
+            if G[i][j] in symbols:
                 if (i, j) not in visited:
                     stack.append((i, j))
     visited.remove(vi)
