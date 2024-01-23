@@ -59,12 +59,22 @@ def dfs(G, v):
     # start DFS for all digits around the given position
     visited, stack = [], [v]  # (y,x) for v
     while stack:
+        v = stack.pop()
+        print(v, stack, visited)
+        visited.append(v)
+        # search adjacent digits
         for i, j in product(range(v[0] - 1, v[0] + 2), range(v[1] - 1, v[1] + 2)):
-            if i < 0 or i > len(G):
+            if i < 0 or i >= len(G):
                 continue
-            if j < 0 or j > len(G[0]):
+            if j < 0 or j >= len(G[0]):
                 continue
-        break
+            print("index {},{}".format(i, j))
+            if not G[i][j].isdigit():
+                continue
+            else:
+                if (i, j) not in visited:
+                    stack.append((i, j))
+
 
 
 
