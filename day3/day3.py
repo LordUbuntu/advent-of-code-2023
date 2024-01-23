@@ -42,8 +42,7 @@ def part2(filename):
     total = 0
     schematic = [line.strip() for line in open(filename).readlines()]
     number = []  # contruct numbers from a queue of digits
-    # same as part1 but this time only paying attention to *
-    # when a * is encountered adjacent to a number, look for another adjacent number that isn't part of the same number, then find the start of both numbers, get their numeric value, and add their values together
+    print(schematic)
     for row in range(len(schematic)):
         for col in range(len(schematic[0])):
             char = schematic[row][col]
@@ -52,11 +51,13 @@ def part2(filename):
                 # adjacency check
                 ratio = 0
                 # DFS all adjacent digits
+                # REMEMBER: (y,x) not (x,y)
                 coords = dfs(schematic, (row, col), {*digits})
-                # check there are two numbers, otherwise skip the rest
+                # TODO:
                 # group coordinates of digits based on the same y value
                 # sort coordinates of each number's digits by ascending x
                 # reconstruct and get value of num from ordered coords
+                # by default unoccupied number places are equal to 0 so that if there is only 1 adjacent number the product will equal 0
                 # get their product and add to total
     return total
 
