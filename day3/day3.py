@@ -54,13 +54,12 @@ def part2(filename):
 
 
 # where G is the schematic, and v is the starting coordinate symbol
-def dfs(G, v):
+def dfs(G, vi):
     from itertools import product
     # start DFS for all digits around the given position
-    visited, stack = [], [v]  # (y,x) for v
+    visited, stack = [], [vi]  # (y,x) for v
     while stack:
         v = stack.pop()
-        print(v, stack, visited)
         visited.append(v)
         # search adjacent digits
         for i, j in product(range(v[0] - 1, v[0] + 2), range(v[1] - 1, v[1] + 2)):
@@ -68,12 +67,11 @@ def dfs(G, v):
                 continue
             if j < 0 or j >= len(G[0]):
                 continue
-            print("index {},{}".format(i, j))
-            if not G[i][j].isdigit():
-                continue
-            else:
+            if G[i][j].isdigit():
                 if (i, j) not in visited:
                     stack.append((i, j))
+    visited.remove(vi)
+    return visited
 
 
 
