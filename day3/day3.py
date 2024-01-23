@@ -71,7 +71,7 @@ def dfs(G, vi):
                 if (i, j) not in visited:
                     stack.append((i, j))
     visited.remove(vi)
-    return visited
+    return set(visited)
 
 
 
