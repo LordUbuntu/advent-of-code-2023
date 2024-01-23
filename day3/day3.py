@@ -49,7 +49,12 @@ def part2(filename):
                 print("* at {},{}".format(col, row))
                 # adjacency check
                 ratio = 0
-                # TODO: DFS, returning y and least x of each number
+                # DFS all adjacent digits
+                # check there are two numbers, otherwise skip the rest
+                # group coordinates of digits based on the same y value
+                # sort coordinates of each number's digits by ascending x
+                # reconstruct and get value of num from ordered coords
+                # get their product and add to total
     return total
 
 
