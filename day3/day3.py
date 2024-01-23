@@ -70,19 +70,26 @@ def dfs(G: list, vi: tuple, symbols: set) -> set:
         the (y,x) coordinate of the initial vertex 'vi' which
         returns all coordinates which are in the set 'symbols'.
     """
-    visited, stack = [], [vi]  # (y,x) for v
+    visited, passed, stack = [], [], [vi]  # (y,x) for v
     while stack:
         v = stack.pop()
         visited.append(v)
         # search adjacent digits
         for i, j in product(range(v[0] - 1, v[0] + 2), range(v[1] - 1, v[1] + 2)):
+            if (i,j) in passed:
+                continue
             if i < 0 or i >= len(G):
+                passed.append((i,j))
                 continue
             if j < 0 or j >= len(G[0]):
+                passed.append((i,j))
                 continue
             if G[i][j] in symbols:
                 if (i, j) not in visited:
                     stack.append((i, j))
+            else:
+                passed.append((i,j))
+            print(G[i][j], symbols, G[i][j] in symbols)
     visited.remove(vi)
     return set(visited)
 
