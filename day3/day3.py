@@ -48,7 +48,6 @@ def part2(filename):
         for col in range(len(schematic[0])):
             char = schematic[row][col]
             if char == '*':
-                print("* at {},{}".format(col, row))
                 # adjacency check
                 # REMEMBER: (y,x) not (x,y)
                 coords = list(dfs(schematic, (row, col), {*string.digits}))
@@ -68,9 +67,9 @@ def part2(filename):
                     numbers[i].sort(key=lambda coord: coord[1])
                     digits = map(partial(coord_to_char, schematic), numbers[i])
                     values[i] = int(''.join(digits))
-                print(values)
-                # by default unoccupied number places are equal to 0 so that if there is only 1 adjacent number the product will equal 0
+                print(values, coords)
                 # get their product and add to total
+                total += values[0] * values[1]
     return total
 
 
