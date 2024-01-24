@@ -51,6 +51,17 @@ def part2(filename):
                 # adjacency check
                 # REMEMBER: (y,x) not (x,y)
                 coords = list(dfs(schematic, (row, col), {*string.digits}))
+                # construct numbers from coordinates
+                # new plan: iterate over coordinates,
+                # pick leftmost and then select one
+                # that is x-1 or x+1 from it, keep
+                # doing this until a single digit is
+                # constructed, dropping digits at the
+                # same time, stopping when no adjacent
+                # digits are found
+                # repeat this process until all the
+                # numbers are constructed
+
                 # group coordinates of digits based on the same y value
                 coords.sort(key=lambda coord: coord[0])
                 numbers = [
@@ -73,11 +84,16 @@ def part2(filename):
     return total
 
 
+# this is a specialized dfs to group adjacent numbers
+def group_adjacent(coords: list) -> list:
+    pass
+
+
 def coord_to_char(G, coord):
     return G[coord[0]][coord[1]]
 
 
-# where G is the schematic, and v is the starting coordinate symbol
+# this is a generalized dfs to find coordinates of digits
 def dfs(G: list, vi: tuple, symbols: set) -> set:
     """
     dfs(G, vi, symbols)
