@@ -50,22 +50,25 @@ def part2(filename):
             if char == '*':
                 print("* at {},{}".format(col, row))
                 # adjacency check
-                ratio = 0
-                # DFS all adjacent digits
                 # REMEMBER: (y,x) not (x,y)
-                coords = dfs(schematic, (row, col), {*string.digits})
+                coords = list(dfs(schematic, (row, col), {*string.digits}))
                 # group coordinates of digits based on the same y value
+                coords.sort(key=lambda coord: coord[0])
                 numbers = [
                     list(group)
                     for _, group in groupby(coords, lambda coord: coord[0])
                 ]
+                # skip unpaired
+                if len(numbers) < 2:
+                    continue
                 # sort coordinates of each number's digits by ascending x
-                for number in numbers:
-                    number.sort(key=lambda coord: coord[1])
                 # reconstruct and get value of num from ordered coords
-                for number in numbers:
-                    digits = map(partial(coord_to_char, schematic), number)
-                    print(list(digits))
+                values = [0, 0]
+                for i in range(len(values)):
+                    numbers[i].sort(key=lambda coord: coord[1])
+                    digits = map(partial(coord_to_char, schematic), numbers[i])
+                    values[i] = int(''.join(digits))
+                print(values)
                 # by default unoccupied number places are equal to 0 so that if there is only 1 adjacent number the product will equal 0
                 # get their product and add to total
     return total
