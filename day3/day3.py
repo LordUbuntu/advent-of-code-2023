@@ -1,7 +1,8 @@
 # Jacobus Burger (2023)
 # Advent of Code Day 3
 from itertools import product, groupby
-from functools import partial
+from functools import partial, reduce
+from operator import mul
 import string
 
 
@@ -48,39 +49,31 @@ def part2(filename):
         for col in range(len(schematic[0])):
             char = schematic[row][col]
             if char == '*':
-                # adjacency check
+                # get coordinates of digits around '*'
                 # REMEMBER: (y,x) not (x,y)
-                coords = list(dfs(schematic, (row, col), {*string.digits}))
-                # construct numbers from coordinates
-                # new plan: iterate over coordinates,
-                # pick leftmost and then select one
-                # that is x-1 or x+1 from it, keep
-                # doing this until a single digit is
-                # constructed, dropping digits at the
-                # same time, stopping when no adjacent
-                # digits are found
-                # repeat this process until all the
-                # numbers are constructed
-
-                # group coordinates of digits based on the same y value
-                coords.sort(key=lambda coord: coord[0])
-                numbers = [
-                    list(group)
-                    for _, group in groupby(coords, lambda coord: coord[0])
-                ]
-                # skip unpaired
-                if len(numbers) < 2:
+                numbers = nums(schematic, (row, col))
+                print(numbers)
+                # skip if there isn't a pair of numbers
+                if len(numbers) != 2:
                     continue
-                # sort coordinates of each number's digits by ascending x
-                # reconstruct and get value of num from ordered coords
-                values = [0, 0]
-                for i in range(len(values)):
-                    numbers[i].sort(key=lambda coord: coord[1])
-                    digits = map(partial(coord_to_char, schematic), numbers[i])
-                    values[i] = int(''.join(digits))
-                print(values, coords)
-                # get their product and add to total
-                total += values[0] * values[1]
+                # sort coordinates of each digit in each number by ascending x
+                numbers = [
+                    sorted(number, key=lambda coordinate: coordinate[1])
+                    for number in numbers
+                ]
+                print(numbers)
+                # convert coordinates of numbers into digit characters
+                numbers = [
+                    ''.join(map(
+                        lambda digit: schematic[digit[0]][digit[1]], numbers))
+                ]
+                print(numbers)
+                # convert number strings to int values
+                numbers = [int(number) for number in numbers]
+                print(numbers)
+                # add ratio to total
+                total += reduce(mul, numbers)
+                print(total)
     return total
 
 
