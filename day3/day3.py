@@ -64,8 +64,11 @@ def part2(filename):
                 print(numbers)
                 # convert coordinates of numbers into digit characters
                 numbers = [
-                    ''.join(map(
-                        lambda digit: schematic[digit[0]][digit[1]], numbers))
+                    ''.join(
+                        schematic[digit[0]][digit[1]]
+                        for digit in number
+                    )
+                    for number in numbers
                 ]
                 print(numbers)
                 # convert number strings to int values
