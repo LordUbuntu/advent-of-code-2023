@@ -5,6 +5,7 @@ from functools import reduce
 from operator import mul
 
 
+# consider rewriting part1 to take advantage of dfs from part2
 def part1(filename):
     total = 0
     schematic = [line.strip() for line in open(filename).readlines()]
@@ -112,13 +113,3 @@ def nums(G: list, vi: tuple) -> list:
             numbers.append(visited)
     # return the list of numbers
     return numbers
-
-
-
-
-
-
-
-
-
-
