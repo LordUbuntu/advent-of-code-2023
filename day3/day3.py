@@ -137,20 +137,16 @@ def nums(G: list, vi: tuple) -> list:
             continue
         # skip digits that are already known
         if (i, j) in known:
-            print("skip ", (i, j))
             continue
         # perform dfs along x of number to get its digits
-        print("checking number, state: ", numbers, known, (i, j))
         y = i
         visited, passed, stack = [], [], [(i, j)]
         while stack:
             v = stack.pop()
             visited.append(v)
             known.append(v)
-            print("  check: ", v, visited, passed)
             # scan adjacent tiles along x
             for x in range(v[1] - 1, v[1] + 2):
-                print("  index: ", (y, x))
                 if (y, x) in passed:
                     continue
                 if (y, x) in known:
@@ -167,7 +163,6 @@ def nums(G: list, vi: tuple) -> list:
         # if visited is not empty, add it to the list of numbers
         if visited:
             numbers.append(visited)
-        print("result: ", visited, numbers)
     # return the list of numbers
     return numbers
 
