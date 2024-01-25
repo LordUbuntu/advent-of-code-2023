@@ -128,21 +128,31 @@ def dfs(G: list, vi: tuple, symbols: set) -> set:
 
 # this will return a list of lists of digits representing adjacent numbers to a given symbol
 def nums(G: list, vi: tuple) -> list:
+    known = []  # avoid duplication of coords
     numbers = []
     # go through each starting point around the centre
-    for i, j in product(range(v[0] - 1, v[0] + 2), range(v[1] - 1, v[1] + 2)):
+    for i, j in product(range(vi[0] - 1, vi[0] + 2), range(vi[1] - 1, vi[1] + 2)):
         # only dive on "islands" of digits
         if not G[i][j].isdigit():
             continue
+        # skip digits that are already known
+        if (i, j) in known:
+            print("skip ", (i, j))
+            continue
         # perform dfs along x of number to get its digits
+        print("checking number, state: ", numbers, known, (i, j))
         y = i
         visited, passed, stack = [], [], [(i, j)]
         while stack:
             v = stack.pop()
             visited.append(v)
+            print("  check: ", v, visited, passed)
             # scan adjacent tiles along x
             for x in range(v[1] - 1, v[1] + 2):
+                print("  index: ", (y, x))
                 if (y, x) in passed:
+                    continue
+                if (y, x) in known:
                     continue
                 if x < 0 or x >= len(G[0]):
                     passed.append((y, x))
@@ -156,6 +166,7 @@ def nums(G: list, vi: tuple) -> list:
         # if visited is not empty, add it to the list of numbers
         if visited:
             numbers.append(visited)
+        print("result: ", visited, numbers)
     # return the list of numbers
     return numbers
 
