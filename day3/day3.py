@@ -44,7 +44,6 @@ def part2(filename):
     total = 0
     schematic = [line.strip() for line in open(filename).readlines()]
     number = []  # contruct numbers from a queue of digits
-    print(schematic)
     for row in range(len(schematic)):
         for col in range(len(schematic[0])):
             char = schematic[row][col]
@@ -52,7 +51,6 @@ def part2(filename):
                 # get coordinates of digits around '*'
                 # REMEMBER: (y,x) not (x,y)
                 numbers = nums(schematic, (row, col))
-                print(numbers)
                 # skip if there isn't a pair of numbers
                 if len(numbers) != 2:
                     continue
@@ -61,7 +59,6 @@ def part2(filename):
                     sorted(number, key=lambda coordinate: coordinate[1])
                     for number in numbers
                 ]
-                print(numbers)
                 # convert coordinates of numbers into digit characters
                 numbers = [
                     ''.join(
@@ -70,13 +67,10 @@ def part2(filename):
                     )
                     for number in numbers
                 ]
-                print(numbers)
                 # convert number strings to int values
                 numbers = [int(number) for number in numbers]
-                print(numbers)
                 # add ratio to total
                 total += reduce(mul, numbers)
-                print(total)
     return total
 
 
