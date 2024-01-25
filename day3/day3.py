@@ -1,9 +1,8 @@
 # Jacobus Burger (2023)
 # Advent of Code Day 3
-from itertools import product, groupby
-from functools import partial, reduce
+from itertools import product
+from functools import reduce
 from operator import mul
-import string
 
 
 def part1(filename):
@@ -72,48 +71,6 @@ def part2(filename):
                 # add ratio to total
                 total += reduce(mul, numbers)
     return total
-
-
-# this is a specialized dfs to group adjacent numbers
-def group_adjacent(coords: list) -> list:
-    pass
-
-
-def coord_to_char(G, coord):
-    return G[coord[0]][coord[1]]
-
-
-# this is a generalized dfs to find coordinates of digits
-def dfs(G: list, vi: tuple, symbols: set) -> set:
-    """
-    dfs(G, vi, symbols)
-
-    Perform a depth first search on the 2D grid 'G' starting at
-        the (y,x) coordinate of the initial vertex 'vi' which
-        returns all coordinates which are in the set 'symbols'.
-    """
-    visited, passed, stack = [], [], [vi]  # (y,x) for v
-    while stack:
-        v = stack.pop()
-        visited.append(v)
-        # search valid adjacent tiles
-        for i, j in product(range(v[0] - 1, v[0] + 2), range(v[1] - 1, v[1] + 2)):
-            if (i,j) in passed:
-                continue
-            if i < 0 or i >= len(G):
-                passed.append((i,j))
-                continue
-            if j < 0 or j >= len(G[0]):
-                passed.append((i,j))
-                continue
-            if G[i][j] in symbols:
-                if (i, j) not in visited:
-                    stack.append((i, j))
-            else:
-                passed.append((i,j))
-            print(v, visited)
-    visited.remove(vi)
-    return set(visited)
 
 
 # this will return a list of lists of digits representing adjacent numbers to a given symbol
