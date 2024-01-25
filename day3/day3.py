@@ -121,10 +121,40 @@ def dfs(G: list, vi: tuple, symbols: set) -> set:
                     stack.append((i, j))
             else:
                 passed.append((i,j))
+            print(v, visited)
     visited.remove(vi)
     return set(visited)
 
 
+# this will return a list of lists of digits representing adjacent numbers to a given symbol
+def nums(G: list, vi: tuple) -> list:
+    # go through each starting point around the centre
+    # perform dfs on all adjacent numbers to the starting number
+    # visited is not a list of digits (a number)
+    # if visited is not empty, add it to the list of numbers
+    # return the list of numbers
+    visited, passed, stack = [], [], [vi]  # (y,x) for v
+    while stack:
+        v = stack.pop()
+        visited.append(v)
+        # search valid adjacent tiles
+        for i, j in product(range(v[0] - 1, v[0] + 2), range(v[1] - 1, v[1] + 2)):
+            if (i,j) in passed:
+                continue
+            if i < 0 or i >= len(G):
+                passed.append((i,j))
+                continue
+            if j < 0 or j >= len(G[0]):
+                passed.append((i,j))
+                continue
+            if G[i][j] in symbols:
+                if (i, j) not in visited:
+                    stack.append((i, j))
+            else:
+                passed.append((i,j))
+            print(v, visited)
+    visited.remove(vi)
+    return set(visited)
 
 
 
