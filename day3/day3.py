@@ -146,6 +146,7 @@ def nums(G: list, vi: tuple) -> list:
         while stack:
             v = stack.pop()
             visited.append(v)
+            known.append(v)
             print("  check: ", v, visited, passed)
             # scan adjacent tiles along x
             for x in range(v[1] - 1, v[1] + 2):
