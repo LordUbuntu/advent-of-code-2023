@@ -128,33 +128,36 @@ def dfs(G: list, vi: tuple, symbols: set) -> set:
 
 # this will return a list of lists of digits representing adjacent numbers to a given symbol
 def nums(G: list, vi: tuple) -> list:
+    numbers = []
     # go through each starting point around the centre
-    # perform dfs on all adjacent numbers to the starting number
-    # visited is not a list of digits (a number)
-    # if visited is not empty, add it to the list of numbers
+    for i, j in product(range(v[0] - 1, v[0] + 2), range(v[1] - 1, v[1] + 2)):
+        # only dive on "islands" of digits
+        if not G[i][j].isdigit():
+            continue
+        # perform dfs along x of number to get its digits
+        y = i
+        visited, passed, stack = [], [], [(i, j)]
+        while stack:
+            v = stack.pop()
+            visited.append(v)
+            # scan adjacent tiles along x
+            for x in range(v[1] - 1, v[1] + 2):
+                if (y, x) in passed:
+                    continue
+                if x < 0 or x >= len(G[0]):
+                    passed.append((y, x))
+                    continue
+                if G[y][x].isdigit():
+                    if (y, x) not in visited:
+                        stack.append((y, x))
+                else:
+                    passed.append((y, x))
+        # visited is now a list of digits (a number)
+        # if visited is not empty, add it to the list of numbers
+        if visited:
+            numbers.append(visited)
     # return the list of numbers
-    visited, passed, stack = [], [], [vi]  # (y,x) for v
-    while stack:
-        v = stack.pop()
-        visited.append(v)
-        # search valid adjacent tiles
-        for i, j in product(range(v[0] - 1, v[0] + 2), range(v[1] - 1, v[1] + 2)):
-            if (i,j) in passed:
-                continue
-            if i < 0 or i >= len(G):
-                passed.append((i,j))
-                continue
-            if j < 0 or j >= len(G[0]):
-                passed.append((i,j))
-                continue
-            if G[i][j] in symbols:
-                if (i, j) not in visited:
-                    stack.append((i, j))
-            else:
-                passed.append((i,j))
-            print(v, visited)
-    visited.remove(vi)
-    return set(visited)
+    return numbers
 
 
 
