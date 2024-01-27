@@ -20,3 +20,8 @@ def part1(filename):
         if winners:
             total += 2**(len(A.intersection(B)) - 1)
     return total
+
+
+def part2(filename):
+# This is the same as part 1 except we count the number of matches of each card and compound that with the cards that come after
+    pass
