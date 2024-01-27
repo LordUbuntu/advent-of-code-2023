@@ -24,4 +24,14 @@ def part1(filename):
 
 def part2(filename):
 # This is the same as part 1 except we count the number of matches of each card and compound that with the cards that come after
-    pass
+    total = 0
+    cards = [line.strip() for line in open(filename).readlines()]
+    for i in range(len(cards) - 1):  # exclude last card winners
+        # get current card
+        card = cards[i]
+        # get number of matches
+        A, B = card.split('|')
+        A = {int(a) for a in A.split() if a.isdigit()}
+        B = {int(b) for b in B.split() if b.isdigit()}
+        winners = len(A.intersection(B))
+        total += winners
