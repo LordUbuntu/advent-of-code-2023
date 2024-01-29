@@ -24,7 +24,6 @@ def part1(filename):
 
 def part2(filename):
 # This is the same as part 1 except we count the number of matches of each card and compound that with the cards that come after
-    total = 0
     cards = [line.strip() for line in open(filename).readlines()]
     count = [1] * len(cards)
     # for i in range(len(cards) - 1):
