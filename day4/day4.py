@@ -27,7 +27,6 @@ def part2(filename):
     total = 0
     cards = [line.strip() for line in open(filename).readlines()]
     count = [1] * len(cards)
-    print(cards, count)
     # for i in range(len(cards) - 1):
     for i in range(len(count) - 1):  # exclude last card winners
         # get current card
@@ -43,4 +42,4 @@ def part2(filename):
             # add one of each consecutive card for the number of wins
             for j in range(i + 1, min(len(count), i + score + 1)):
                 count[j] += 1
-        print(total, count)
+    return sum(count) # return total
