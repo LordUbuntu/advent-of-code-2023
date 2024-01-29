@@ -37,4 +37,8 @@ def part2(filename):
         B = {int(b) for b in B.split() if b.isdigit()}
         score = len(A.intersection(B))
         # add more cards based on number of wins
-
+        # for the number of cards won by this card
+        for _ in range(count[i]):
+            # add one of each consecutive card for the number of wins
+            for j in range(i + 1, len(count)):
+                count[j] += 1
