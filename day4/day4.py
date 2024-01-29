@@ -22,23 +22,20 @@ def part1(filename):
     return total
 
 
+# Part 2
 def part2(filename):
 # This is the same as part 1 except we count the number of matches of each card and compound that with the cards that come after
     cards = [line.strip() for line in open(filename).readlines()]
     count = [1] * len(cards)
-    # for i in range(len(cards) - 1):
     for i in range(len(count) - 1):  # exclude last card winners
-        # get current card
-        card = cards[i]
         # get number of matches for current card
+        card = cards[i]
         A, B = card.split('|')
         A = {int(a) for a in A.split() if a.isdigit()}
         B = {int(b) for b in B.split() if b.isdigit()}
         score = len(A.intersection(B))
-        # add more cards based on number of wins
-        # for the number of cards won by this card
+        # add extra cards after based on the given rule
         for _ in range(count[i]):
-            # add one of each consecutive card for the number of wins
             for j in range(i + 1, min(len(count), i + score + 1)):
                 count[j] += 1
     return sum(count) # return total
