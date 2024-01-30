@@ -1,5 +1,5 @@
 # Jacobus Burger (2023)
-# Day 1
+# Advent of Code Day 1 (2023)
 
 
 # Solution to Part 1

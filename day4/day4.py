@@ -1,5 +1,5 @@
-# Jacobus Burger (2023)
-# Advent of Code - Day 4
+# Jacobus Burger (2024)
+# Advent of Code Day 4 (2023)
 
 
 # Part 1
